@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Top 2000</title>
+		<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font: 12px/14px sans-serif;
+			background: #000;
+			color: #eee;
+			width: 100%;
+			height: 100%;
+		}
+
+		#last-update {
+			position: absolute;
+			bottom: 20px;
+			left: 0;
+			width: 100%;
+			text-align: center;
+			color: #333;
+		}
+
+		#now-playing {
+			transition: opacity 500ms;
+			-webkit-transition: opacity 500ms;
+			opacity: 0.0;
+		}
+
+		.loaded #now-playing {
+			opacity: 1.0;
+		}
+
+		#lyrics {
+			background: rgba(0,0,0,0.8);
+			width: 100%;
+			text-align: center;
+			z-index: 100;
+			position: absolute;
+			font: 18px/32px sans-serif;
+			overflow: auto;
+			top: 100%;
+			min-height: 100%;
+		}
+
+		@media only screen and (max-width: 900px) {
+
+		#now-playing {
+			padding: 20px;
+			font: 120px/182px sans-serif;
+			word-break: break-all;
+		}
+		
+		#now-playing .cover {
+			width: 182px;
+			height: 182px;
+			float: left;
+			margin-right: 20px;
+		}
+
+		#now-playing .artist {
+			font-weight: bold;
+		}
+
+		#now-playing .position {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+
+		}
+
+		@media only screen and (min-width: 900px) {
+
+		#now-playing {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			width: 900px;
+			height: 222px;
+		}
+
+		#now-playing .cover {
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			width: 182px;
+			height: 182px;
+		}
+
+		#now-playing .position {
+			position: absolute;
+			right: 20px;
+			bottom: 20px;
+		}
+
+		#now-playing .artist,
+		#now-playing .song {
+			position: absolute;
+			display: block;
+			font-size: 68px;
+			line-height: 91px;
+		}
+
+		#now-playing .artist {
+			top: 20px;
+			left: 222px;
+			font-weight: bold;
+		}
+
+		#now-playing .song {
+			top: 111px;
+			left: 222px;
+			font-size: 51px;
+		}
+
+		}
+
+		</style>
+	</head>
+	<body>
+		<div id="now-playing">
+			<span class="position"></span>
+			<img class="cover">
+			<span class="artist"></span>
+			<span class="song"></span>
+		</div>
+
+		<span id="last-update"></span>
+
+		<div id="lyrics"></div>
+
+		<script>
+			var interval, currentSong, lastUpdate;
+
+			function request(url, callback)
+			{
+				var request = new XMLHttpRequest();
+				request.open('GET', url, true);
+				request.onreadystatechange = function() {
+					if (request.readyState == 4 && request.status == 200)
+						callback(JSON.parse(request.responseText));
+				};
+				request.send();
+			}
+			
+			function getCurrentSongInfo(callback)
+			{
+				request('nowplaying.php?t=' + new Date().getTime(), callback);
+			}
+
+			function getLyrics(song, callback)
+			{
+				request('lyrics.php?artist=' + encodeURIComponent(song.artist) + '&song=' + encodeURIComponent(song.title), callback);
+			}
+
+			function $(selector, text)
+			{
+				var element = document.querySelector(selector);
+
+				if (text != null)
+				{
+					// Clean it out
+					while (element.firstChild)
+						element.removeChild(element.firstChild);
+
+					// Add new content
+					element.appendChild(document.createTextNode(text));
+				}
+
+				return element;
+			}
+
+			function showCurrentSongInfo(song)
+			{
+				$('#now-playing .position', '#' + song.database.pos_2012);
+				$('#now-playing .cover').src = song.image;
+				$('#now-playing .artist', song.artist);
+				$('#now-playing .song', song.title);
+			}
+
+			function showLastUpdateInfo()
+			{
+				if (!lastUpdate)
+					return;
+
+				var diff = new Date().getTime() - lastUpdate;
+
+				var minutes = Math.floor(diff / 60000),
+					seconds = Math.floor((diff % 60000) / 1000);
+
+				var text = minutes == 0
+					? seconds + ' seconden geleden'
+					: minutes + ' minuten geleden';
+
+
+				$('#last-update', text);
+			}
+
+			function showLyrics(lyrics)
+			{
+				$('#lyrics').innerHTML = lyrics.lyrics;
+			}
+
+			function isCurrentSong(song)
+			{
+				return currentSong && song
+					&& currentSong.artist == song.artist
+					&& currentSong.title == song.title;
+			}
+
+			function update()
+			{
+				getCurrentSongInfo(function(song) {
+					// Update display
+					if (!isCurrentSong(song))
+					{
+						document.body.className = 'loading';
+
+						setTimeout(function() {
+							showCurrentSongInfo(song);
+							getLyrics(song, showLyrics);
+							document.body.className = 'loaded';
+						}, 500);
+
+						currentSong = song;
+					}
+
+					// Update interal status
+					lastUpdate = new Date().getTime();
+
+					// Schedule next update (with a minimum pause of 10 seconds)
+					var diff = song ? song.expires - new Date().getTime() / 1000 : 0;
+					clearInterval(interval);
+					interval = setTimeout(update, Math.min(Math.max(diff, 10), 60 * 4.5) * 1000);
+				});
+			}
+
+			// Set up update triggers
+			setInterval(showLastUpdateInfo, 1000);
+			document.addEventListener('click', update, false);
+			document.addEventListener('touchstart', update, false);
+
+			// Init.
+			showLastUpdateInfo();
+			update();
+
+		</script>
+	</body>
+</html>
