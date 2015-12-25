@@ -183,7 +183,7 @@
 
 			function showCurrentSongInfo(song)
 			{
-				$('#now-playing .position', '#' + song.position);
+				$('#now-playing .position', '#' + (song.position || '???'));
 				$('#now-playing .cover').src = song.image;
 				$('#now-playing .artist', song.artist);
 				$('#now-playing .song', song.title);
