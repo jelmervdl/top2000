@@ -261,6 +261,13 @@
 					&& currentSong.title == song.title;
 			}
 
+			function preload(src, callback)
+			{
+				var img = new Image();
+				img.onload = callback;
+				img.src = src;
+			}
+
 			function update()
 			{
 				getCurrentSongInfo(function(song) {
@@ -269,11 +276,16 @@
 					{
 						document.body.className = 'loading';
 
-						setTimeout(function() {
+						var callback = function() {
 							showCurrentSongInfo(song);
 							getLyrics(song, showLyrics);
 							document.body.className = 'loaded';
-						}, 500);
+						};
+
+						if (song.image)
+							preload(song.image, callback);
+						else
+							setTimeout(callback, 500);
 
 						currentSong = song;
 					}
