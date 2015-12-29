@@ -19,7 +19,7 @@ else if (!preg_match("/'url':'([^']+)'/", $api_response, $match))
 else if (($webpage = file_get_contents($match[1])) === false)
 	$response['error'] = 'Could not fetch lyrics';
 
-else if (preg_match('/((?:&#\d+;|<br \\/>){10,})/', $webpage, $match))
+else if (preg_match('/((?:&#\d+;|<\\/?i>|<br \\/>){10,})/', $webpage, $match))
 	$response['lyrics'] = decode_entities($match[1]);
 else
 	$response['error'] = 'Could not find lyrics';
