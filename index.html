@@ -251,7 +251,7 @@
 
 			function showLyrics(lyrics)
 			{
-				$('#lyrics').innerHTML = lyrics.lyrics;
+				$('#lyrics').innerHTML = lyrics.lyrics || '<em>Geen songtekst beschikbaar</em>';
 			}
 
 			function isCurrentSong(song)
