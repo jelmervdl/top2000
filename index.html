@@ -210,15 +210,8 @@
 				var element = document.querySelector(selector);
 
 				if (text != null)
-				{
-					// Clean it out
-					while (element.firstChild)
-						element.removeChild(element.firstChild);
-
-					// Add new content
-					element.appendChild(document.createTextNode(text));
-				}
-
+					element.textContent = text;
+				
 				return element;
 			}
 
@@ -294,6 +287,9 @@
 
 					// Schedule next update (with a minimum pause of 10 seconds)
 					var diff = song ? song.expires - new Date().getTime() / 1000 : 0;
+					
+					console.info('Refresh in', diff, 'seconds');
+					
 					clearInterval(interval);
 					interval = setTimeout(update, Math.min(Math.max(diff, 10), 60 * 4.5) * 1000);
 				});
