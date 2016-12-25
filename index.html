@@ -241,10 +241,9 @@
 				var minutes = Math.floor(diff / 60000),
 					seconds = Math.floor((diff % 60000) / 1000);
 
-				var text = minutes == 0
-					? seconds + ' seconden geleden'
-					: minutes + ' minuten geleden';
-
+				var text = (minutes == 0
+					? [seconds, seconds === 1 ? 'seconde' : 'seconden', 'geleden']
+					: [minutes, minutes === 1 ? 'minuut' : 'minuten', 'geleden']).join(' ');
 
 				$('#last-update', text);
 			}
