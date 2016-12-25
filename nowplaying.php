@@ -16,7 +16,7 @@ $response = [
 
 function find_song(Callable $compare)
 {
-	$list = json_decode(file_get_contents('2015.json'));
+	$list = json_decode(file_get_contents('2016.json'));
 
 	foreach ($list as $position => $song)
 		if ($compare($song))
