@@ -44,7 +44,9 @@ function find_song(Callable $compare)
 
 function simplify($text)
 {
-	return preg_replace('/[^a-z0-9]/', '', strtolower($text));
+	$text = preg_replace('/[^a-z0-9]/', '', strtolower($text));
+	$text = preg_replace('/^the\s/', '', $text);
+	return $text;
 }
 
 // If it is already linked by songfile, use that information
