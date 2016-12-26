@@ -91,13 +91,13 @@
 
 		#now-playing {
 			padding: 20px;
-			font: 120px/182px sans-serif;
+			font: 15vw/17.5vw sans-serif;
 			word-break: break-all;
 		}
 		
 		#now-playing .cover {
-			width: 182px;
-			height: 182px;
+			width: 1em;
+			height: 1em;
 			float: left;
 			margin-right: 20px;
 		}
@@ -108,7 +108,7 @@
 
 		#now-playing .position {
 			position: absolute;
-			bottom: -20px;
+			bottom: 20px;
 			right: 20px;
 		}
 
@@ -304,12 +304,14 @@
 			showLastUpdateInfo();
 			update();
 
+			// Fade out background when scrolling
 			var container = document.getElementById('container'),
 				background = document.getElementById('background');
 
 			container.addEventListener('scroll', function() {
 				requestAnimationFrame(function() {
-					container.style.backgroundColor = 'rgba(0, 0, 0, ' + Math.max(0.2, Math.min(1.0, container.scrollTop / background.clientHeight)) + ')';
+					var opacity = Math.max(0.2, Math.min(1.0, container.scrollTop / background.clientHeight));
+					container.style.backgroundColor = 'rgba(0, 0, 0, ' + opacity + ')';
 				});
 			}, false);
 
