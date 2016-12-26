@@ -218,7 +218,7 @@
 			function showCurrentSongInfo(song)
 			{
 				$('#now-playing .position', '#' + (song.position || '???'));
-				$('#now-playing .cover').src = song.image;
+				$('#now-playing .cover').src = song.image || 'generic-cd.png';
 				$('#now-playing .artist', song.artist);
 				$('#now-playing .song', song.title);
 				document.querySelector('#background').style.backgroundImage = 'url(' + song.image + ')';
