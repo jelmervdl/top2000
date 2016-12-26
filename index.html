@@ -286,7 +286,7 @@
 					lastUpdate = new Date().getTime();
 
 					// Schedule next update (with a minimum pause of 10 seconds)
-					var diff = song ? song.expires - new Date().getTime() / 1000 : 0;
+					var diff = song && 'expires' in song ? song.expires - new Date().getTime() / 1000 : 0;
 					
 					console.info('Refresh in', diff, 'seconds');
 					

@@ -4,6 +4,8 @@ date_default_timezone_set('Europe/Amsterdam');
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 
+$list = json_decode(file_get_contents('2016.json'));
+
 $now_playing_data = file_get_contents('http://radiobox2.omroep.nl/data/radiobox2/nowonair/2.json?npo_cc_skip_wall=1');
 
 $now_playing = json_decode($now_playing_data)->results[0];
@@ -14,18 +16,28 @@ $response = [
 	'expires' => strtotime($now_playing->stopdatetime)
 ];
 
+function get_song($index)
+{
+	global $list;
+
+	$song = $list[$index];
+	
+	return [
+		'index' => $index,
+		'title' => $song->s,
+		'artist' => $song->a,
+		'position' => $song->pos,
+		'image' => sprintf('http://radiobox2.omroep.nl/image/file/%d/title.jpg', $song->img),
+	];
+}
+
 function find_song(Callable $compare)
 {
-	$list = json_decode(file_get_contents('2016.json'));
+	global $list;
 
-	foreach ($list as $position => $song)
+	foreach ($list as $index => $song)
 		if ($compare($song))
-			return [
-				'title' => $song->s,
-				'artist' => $song->a,
-				'position' => $song->pos,
-				'image' => sprintf('http://radiobox2.omroep.nl/image/file/%d/title.jpg', $song->img),
-			];
+			return get_song($index);
 	
 	return null;
 }
@@ -51,8 +63,13 @@ else {
 	});
 }
 
-if ($found)
-	$response = array_merge($response, $found);	
+if ($found) {
+	$response = array_merge($response, $found);
+
+	// If the song has already expired for about half a minute, skip on to the next
+	if ($response['expires'] - time() < 0)
+		$response = get_song($response['index'] - 1);
+}
 
 header('Content-Type: application/json');
 echo json_encode($response);
