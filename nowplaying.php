@@ -69,7 +69,7 @@ if ($found) {
 	$response = array_merge($response, $found);
 
 	// If the song has already expired for about half a minute, skip on to the next
-	if ($response['expires'] - time() < 0)
+	if ($response['expires'] - time() < -30)
 		$response = get_song($response['index'] - 1);
 }
 
