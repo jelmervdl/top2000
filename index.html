@@ -76,6 +76,16 @@
 			opacity: 1.0;
 		}
 
+		#now-playing .position-change.down::before {
+			font-size: 0.8em;
+			content: '⇩';
+		}
+
+		#now-playing .position-change.up::before {
+			font-size: 0.8em;
+			content: '⇧';
+		}
+
 		#lyrics {
 			width: 100%;
 			text-align: center;
@@ -168,7 +178,10 @@
 	<body>
 		<div id="container">
 			<div id="now-playing">
-				<span class="position"></span>
+				<span class="position">
+					<span class="position-current"></span>
+					<span class="position-change"></span>
+				</span>
 				<img class="cover">
 				<span class="artist"></span>
 				<span class="song"></span>
@@ -209,7 +222,7 @@
 			{
 				var element = document.querySelector(selector);
 
-				if (text != null)
+				if (element && text !== undefined)
 					element.textContent = text;
 				
 				return element;
@@ -217,11 +230,18 @@
 
 			function showCurrentSongInfo(song)
 			{
-				$('#now-playing .position', '#' + (song.position || '???'));
+				$('#now-playing .position-current', '#' + (song.position || '???'));
 				$('#now-playing .cover').src = song.image || 'generic-cd.png';
 				$('#now-playing .artist', song.artist);
 				$('#now-playing .song', song.title);
 				document.querySelector('#background').style.backgroundImage = 'url(' + song.image + ')';
+
+				if ('position' in song && 'prev_position' in song) {
+					var direction = song.position - song.prev_position > 0 ? 'down' : 'up';
+					var el = $('#now-playing .position-change');
+					el.textContent = Math.abs(song.position - song.prev_position);
+					el.className = 'position-change ' + direction;
+				}
 			}
 
 			function showLastUpdateInfo()

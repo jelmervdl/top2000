@@ -4,22 +4,8 @@ date_default_timezone_set('Europe/Amsterdam');
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 
-$list = json_decode(file_get_contents('2017.json'));
-
-$now_playing_data = file_get_contents('http://radiobox2.omroep.nl/data/radiobox2/nowonair/2.json?npo_cc_skip_wall=1');
-
-$now_playing = json_decode($now_playing_data)->results[0];
-
-$response = [
-	'artist' => $now_playing->songfile->artist,
-	'title' => $now_playing->songfile->title,
-	'expires' => strtotime($now_playing->stopdatetime)
-];
-
-function get_song($index)
+function get_song(array $list, $index)
 {
-	global $list;
-
 	$song = $list[$index];
 	
 	return [
@@ -31,13 +17,21 @@ function get_song($index)
 	];
 }
 
-function find_song(Callable $compare)
+function find_song(array $list, array $now_playing)
 {
-	global $list;
+	// If it is already linked by songfile, use that information
+	if (!empty($now_playing['aid']))
+		foreach ($list as $i => $song)
+			if ($song->aid == $now_playing['aid'])
+				return get_song($list, $i);
 
-	foreach ($list as $index => $song)
-		if ($compare($song))
-			return get_song($index);
+	// But sometimes Radio2 messed up, and we are just going try to match it on artist and title
+	$simplified_artist = simplify($now_playing['artist']);
+	$simplified_title = simplify($now_playing['title']);
+
+	foreach ($list as $i => $song)
+		if (simplify($song->s) == $simplified_title && simplify($song->a) == $simplified_artist)
+			return get_song($list, $i);
 	
 	return null;
 }
@@ -49,29 +43,42 @@ function simplify($text)
 	return $text;
 }
 
-// If it is already linked by songfile, use that information
-if (isset($now_playing->songfile, $now_playing->songfile->songversion)) {
-	$found = find_song(function($song) use ($now_playing) {
-		return $song->aid == $now_playing->songfile->songversion->id;
-	});
-}
-// But sometimes Radio2 messed up, and we are just going try to match it on artist and title
-else {
-	$simplified_artist = simplify($now_playing->songfile->artist);
-	$simplified_title = simplify($now_playing->songfile->title);
-	$found = find_song(function($song) use ($simplified_artist, $simplified_title) {
-		return simplify($song->s) == $simplified_title
-			&& simplify($song->a) == $simplified_artist;
-	});
-}
+function main()
+{
+	$year = '2017';
 
-if ($found) {
-	$response = array_merge($response, $found);
+	$list = json_decode(file_get_contents(sprintf('%d.json', $year)));
 
+	$list_prev_year = json_decode(file_get_contents(sprintf('%d.json', $year - 1)));
+
+	$now_playing_data = file_get_contents('http://radiobox2.omroep.nl/data/radiobox2/nowonair/2.json?npo_cc_skip_wall=1');
+
+	$now_playing = json_decode($now_playing_data)->results[0];
+
+	$song = [
+		'aid' => isset(
+				$now_playing->songfile->songversion,
+				$now_playing->songfile->songversion->id)
+			? $now_playing->songfile->songversion->id
+			: null,
+		'artist' => $now_playing->songfile->artist,
+		'title' => $now_playing->songfile->title,
+		'expires' => strtotime($now_playing->stopdatetime)
+	];
+
+	if ($song_in_list = find_song($list, $song))
+		$song = array_merge($song, $song_in_list);
+	
 	// If the song has already expired for about half a minute, skip on to the next
-	if ($response['expires'] - time() < -30)
-		$response = get_song($response['index'] - 1);
+	if (isset($song['index']) && $song['expires'] - time() < -30)
+		$song = get_song($list, $song['index'] - 1);
+
+	// Find the current song in previous year's list
+	if ($song_in_prev_list = find_song($list_prev_year, $song))
+		$song['prev_position'] = $song_in_prev_list['position'];
+
+	return $song;
 }
 
 header('Content-Type: application/json');
-echo json_encode($response);
+echo json_encode(main());
