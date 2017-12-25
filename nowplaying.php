@@ -4,7 +4,7 @@ date_default_timezone_set('Europe/Amsterdam');
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 
-$list = json_decode(file_get_contents('2016.json'));
+$list = json_decode(file_get_contents('2017.json'));
 
 $now_playing_data = file_get_contents('http://radiobox2.omroep.nl/data/radiobox2/nowonair/2.json?npo_cc_skip_wall=1');
 
