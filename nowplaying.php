@@ -38,7 +38,7 @@ function find_song(array $list, array $now_playing)
 
 function simplify($text)
 {
-	$text = preg_replace('/[^a-z0-9]/', '', strtolower($text));
+	$text = preg_replace('/[^a-z0-9\s]/', '', strtolower($text));
 	$text = preg_replace('/^the\s/', '', $text);
 	return $text;
 }
