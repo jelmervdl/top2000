@@ -86,6 +86,10 @@
 			content: '⇧';
 		}
 
+		#now-playing .position-change.hidden {
+			display: none;
+		}
+
 		#lyrics {
 			width: 100%;
 			text-align: center;
@@ -180,7 +184,7 @@
 			<div id="now-playing">
 				<span class="position">
 					<span class="position-current"></span>
-					<span class="position-change"></span>
+					<span class="position-change hidden"></span>
 				</span>
 				<img class="cover">
 				<span class="artist"></span>
@@ -236,11 +240,15 @@
 				$('#now-playing .song', song.title);
 				document.querySelector('#background').style.backgroundImage = 'url(' + song.image + ')';
 
+				var el = $('#now-playing .position-change');
+
 				if ('position' in song && 'prev_position' in song) {
 					var direction = song.position - song.prev_position > 0 ? 'down' : 'up';
-					var el = $('#now-playing .position-change');
 					el.textContent = Math.abs(song.position - song.prev_position);
 					el.className = 'position-change ' + direction;
+				} else {
+					el.textContent = '';
+					el.className = 'position-change hidden';
 				}
 			}
 
