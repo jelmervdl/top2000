@@ -13,13 +13,15 @@ $api_response = file_get_contents('http://lyrics.wikia.com/api.php?fmt=json&acti
 if (preg_match("/'lyrics':'Not found'/", $api_response))
 	$response['error'] = 'Not found';
 
-else if (!preg_match("/'url':'([^']+)'/", $api_response, $match))
+else if (!preg_match("/'url':'(.+?)(?<!\\\\)(?:\\\\{2})*'/", $api_response, $match))
 	$response['error'] = 'Could not find url';
 
 else if (($webpage = file_get_contents($match[1])) === false)
 	$response['error'] = 'Could not fetch lyrics';
 
 else if (preg_match('/((?:&#\d+;|<\\/?i>|<br \\/>){10,})/', $webpage, $match))
+	$response['lyrics'] = decode_entities($match[1]);
+else if (preg_match('/<div class=\'lyricbox\'>(.+?)<div class=\'lyricsbreak\'>/', $webpage, $match))
 	$response['lyrics'] = decode_entities($match[1]);
 else
 	$response['error'] = 'Could not find lyrics';
