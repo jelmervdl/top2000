@@ -3034,7 +3034,7 @@
     "pos": 190,
     "prv": 156,
     "did": "0",
-    "sorta": "motoerhead",
+    "sorta": "motorhead",
     "sorts": "ace of spades",
     "img": "156840",
     "url": "/song/44926/ace-of-spades"
@@ -5818,7 +5818,7 @@
     "pos": 364,
     "prv": 390,
     "did": "0",
-    "sorta": "herbert groenemeyer",
+    "sorta": "herbert gronemeyer",
     "sorts": "halt mich",
     "img": "70205",
     "url": "/song/3398/halt-mich"
@@ -8618,7 +8618,7 @@
     "pos": 539,
     "prv": 519,
     "did": "0",
-    "sorta": "herbert groenemeyer",
+    "sorta": "herbert gronemeyer",
     "sorts": "der weg",
     "img": "69868",
     "url": "/song/3400/der-weg"
@@ -10330,7 +10330,7 @@
     "pos": 646,
     "prv": 703,
     "did": "0",
-    "sorta": "blue oeyster cult",
+    "sorta": "blue oyster cult",
     "sorts": "don t fear the reaper",
     "img": "69851",
     "url": "/song/4724/don-t-fear-the-reaper"
@@ -21514,7 +21514,7 @@
     "pos": 1345,
     "prv": 1174,
     "did": "0",
-    "sorta": "herbert groenemeyer",
+    "sorta": "herbert gronemeyer",
     "sorts": "mensch",
     "img": "69399",
     "url": "/song/3399/mensch"
@@ -21648,8 +21648,8 @@
     "url": "/song/35557/one-moment-in-time"
   },
   {
-    "s": "Tell Him",
-    "a": "Barbra Streisand & Céline Dion",
+    "s": "Tell Him",
+    "a": "Barbra Streisand",
     "ss": "t",
     "aa": "b",
     "aid": "36236",
@@ -21658,7 +21658,7 @@
     "pos": 1354,
     "prv": 0,
     "did": "0",
-    "sorta": "barbra streisand celine dion",
+    "sorta": "barbra streisand",
     "sorts": "tell him",
     "img": "70997",
     "url": "/song/36236/tell-him"
@@ -21888,7 +21888,7 @@
     "url": "/song/36498/fly-like-an-eagle"
   },
   {
-    "s": "Europa (Earth's Cry, Heaven's Smile)",
+    "s": "Europa (Earth's Cry Heaven Smile)",
     "a": "Santana",
     "ss": "e",
     "aa": "s",
@@ -21899,9 +21899,9 @@
     "prv": 1217,
     "did": "0",
     "sorta": "santana",
-    "sorts": "europa earth s cry heaven s smile",
+    "sorts": "europa earth s cry heaven smile",
     "img": "71263",
-    "url": "/song/35790/europa-earth-s-cry-heaven-s-smile"
+    "url": "/song/35790/europa-earth-s-cry-heaven-smile"
   },
   {
     "s": "Yours Is No Disgrace",
@@ -21937,7 +21937,7 @@
   },
   {
     "s": "Same Love",
-    "a": "Macklemore & Ryan Lewis",
+    "a": "Macklemore ft. Ryan Lewis",
     "ss": "s",
     "aa": "m",
     "aid": "41446",
@@ -21946,7 +21946,7 @@
     "pos": 1372,
     "prv": 1340,
     "did": "0",
-    "sorta": "macklemore ryan lewis",
+    "sorta": "macklemore ft ryan lewis",
     "sorts": "same love",
     "img": "97250",
     "url": "/song/41446/same-love"
@@ -21984,7 +21984,7 @@
     "url": "/song/2176/a-long-december"
   },
   {
-    "s": "Anarchy In The Uk",
+    "s": "Anarchy In The U.K.",
     "a": "Sex Pistols",
     "ss": "a",
     "aa": "s",
@@ -21995,13 +21995,13 @@
     "prv": 1305,
     "did": "0",
     "sorta": "sex pistols",
-    "sorts": "anarchy in the uk",
+    "sorts": "anarchy in the u k",
     "img": "58295",
-    "url": "/song/5791/anarchy-in-the-uk"
+    "url": "/song/5791/anarchy-in-the-u-k"
   },
   {
     "s": "Relax",
-    "a": "Frankie Goes To Hollywood",
+    "a": "Frankie goes to Hollywood",
     "ss": "r",
     "aa": "f",
     "aid": "4142",
@@ -22016,8 +22016,8 @@
     "url": "/song/4142/relax"
   },
   {
-    "s": "It's The End Of The World As We Know It (And I Feel Fine)",
-    "a": "R.E.M.",
+    "s": "It's The End Of The World As We Know It",
+    "a": "REM",
     "ss": "i",
     "aa": "r",
     "aid": "1174",
@@ -22026,10 +22026,10 @@
     "pos": 1377,
     "prv": 1468,
     "did": "0",
-    "sorta": "r e m",
-    "sorts": "it s the end of the world as we know it and i feel fine",
+    "sorta": "rem",
+    "sorts": "it s the end of the world as we know it",
     "img": "142819",
-    "url": "/song/1174/it-s-the-end-of-the-world-as-we-know-it-and-i-feel-fine"
+    "url": "/song/1174/it-s-the-end-of-the-world-as-we-know-it"
   },
   {
     "s": "On The Border",
@@ -22369,7 +22369,7 @@
   },
   {
     "s": "Cocaine",
-    "a": "J.J. Cale",
+    "a": "JJ Cale",
     "ss": "c",
     "aa": "j",
     "aid": "3581",
@@ -22378,7 +22378,7 @@
     "pos": 1399,
     "prv": 1161,
     "did": "0",
-    "sorta": "j j cale",
+    "sorta": "jj cale",
     "sorts": "cocaine",
     "img": "69717",
     "url": "/song/3581/cocaine"
@@ -22496,7 +22496,7 @@
     "url": "/song/315/love-in-an-elevator"
   },
   {
-    "s": "September Morn'",
+    "s": "September Morn'",
     "a": "Neil Diamond",
     "ss": "s",
     "aa": "n",
@@ -22528,7 +22528,7 @@
     "url": "/song/44739/send-me-an-angel"
   },
   {
-    "s": "Angel Of Harlem",
+    "s": "Angel of Harlem",
     "a": "U2",
     "ss": "a",
     "aa": "u",
@@ -22657,7 +22657,7 @@
   },
   {
     "s": "Burning Heart",
-    "a": "Vandenberg",
+    "a": "Vandenberg's Moonkings",
     "ss": "b",
     "aa": "v",
     "aid": "43207",
@@ -22666,7 +22666,7 @@
     "pos": 1417,
     "prv": 1432,
     "did": "0",
-    "sorta": "vandenberg",
+    "sorta": "vandenberg s moonkings",
     "sorts": "burning heart",
     "img": "",
     "url": "/song/43207/burning-heart"
@@ -22721,16 +22721,16 @@
   },
   {
     "s": "Perhaps Love",
-    "a": "John Denver",
+    "a": "Placido Domingo & John Denver",
     "ss": "p",
-    "aa": "j",
+    "aa": "p",
     "aid": "3081",
     "yr": 1981,
     "aud": 14624,
     "pos": 1421,
     "prv": 1120,
     "did": "0",
-    "sorta": "john denver",
+    "sorta": "placido domingo john denver",
     "sorts": "perhaps love",
     "img": "74381",
     "url": "/song/3081/perhaps-love"
@@ -22832,7 +22832,7 @@
     "url": "/song/50209/heathens"
   },
   {
-    "s": "Lady D'Arbanville",
+    "s": "Lady d'Arbanville",
     "a": "Cat Stevens",
     "ss": "l",
     "aa": "c",
@@ -22912,7 +22912,7 @@
     "url": "/song/966/so-incredible"
   },
   {
-    "s": "Everybody (Backstreet's Back)",
+    "s": "Everybody",
     "a": "Backstreet Boys",
     "ss": "e",
     "aa": "b",
@@ -22923,9 +22923,9 @@
     "prv": 1541,
     "did": "0",
     "sorta": "backstreet boys",
-    "sorts": "everybody backstreet s back",
+    "sorts": "everybody",
     "img": "57010",
-    "url": "/song/2809/everybody-backstreet-s-back"
+    "url": "/song/2809/everybody"
   },
   {
     "s": "No Rain",
@@ -23185,7 +23185,7 @@
   },
   {
     "s": "Hall Of Fame",
-    "a": "The Script & Will.i.am",
+    "a": "The Script & will.i.am",
     "ss": "h",
     "aa": "t",
     "aid": "10573",
@@ -23281,7 +23281,7 @@
   },
   {
     "s": "I Won't Let You Down",
-    "a": "PHD",
+    "a": "Ph.D.",
     "ss": "i",
     "aa": "p",
     "aid": "242",
@@ -23290,7 +23290,7 @@
     "pos": 1456,
     "prv": 1311,
     "did": "0",
-    "sorta": "phd",
+    "sorta": "ph d",
     "sorts": "i won t let you down",
     "img": "69517",
     "url": "/song/242/i-won-t-let-you-down"
@@ -23456,7 +23456,7 @@
     "url": "/song/34968/one-of-us"
   },
   {
-    "s": "At Seventeen",
+    "s": "At Seventeen",
     "a": "Janis Ian",
     "ss": "a",
     "aa": "j",
@@ -23521,7 +23521,7 @@
   },
   {
     "s": "Sylvia's Mother",
-    "a": "Dr. Hook",
+    "a": "Dr Hook",
     "ss": "s",
     "aa": "d",
     "aid": "36847",
@@ -23537,7 +23537,7 @@
   },
   {
     "s": "Freestyler",
-    "a": "Bomfunk MC's",
+    "a": "Bomfunk MC's ",
     "ss": "f",
     "aa": "b",
     "aid": "1243",
@@ -23681,7 +23681,7 @@
   },
   {
     "s": "Blinded By The Light",
-    "a": "Manfred Mann's Earth Band",
+    "a": "Manfred Mann's Earth band",
     "ss": "b",
     "aa": "m",
     "aid": "1787",
@@ -23984,7 +23984,7 @@
     "url": "/song/9608/love-is-all"
   },
   {
-    "s": "Theme From 'New York, New York'",
+    "s": "Theme From New York, New York",
     "a": "Frank Sinatra",
     "ss": "t",
     "aa": "f",
@@ -24000,7 +24000,7 @@
     "url": "/song/35777/theme-from-new-york-new-york"
   },
   {
-    "s": "Break On Through (To The Other Side)",
+    "s": "Break On Through",
     "a": "The Doors",
     "ss": "b",
     "aa": "t",
@@ -24011,9 +24011,9 @@
     "prv": 1422,
     "did": "0",
     "sorta": "the doors",
-    "sorts": "break on through to the other side",
+    "sorts": "break on through",
     "img": "203502",
-    "url": "/song/33732/break-on-through-to-the-other-side"
+    "url": "/song/33732/break-on-through"
   },
   {
     "s": "Sometimes You Can't Make It On Your Own",
@@ -24272,7 +24272,7 @@
     "url": "/song/33304/wanna-be-startin-somethin"
   },
   {
-    "s": "God Save The Queen",
+    "s": "GOD SAVE THE QUEEN",
     "a": "Sex Pistols",
     "ss": "g",
     "aa": "s",
@@ -24289,7 +24289,7 @@
   },
   {
     "s": "Vlieg Met Me Mee",
-    "a": "Paul de Leeuw",
+    "a": "Paul De Leeuw",
     "ss": "v",
     "aa": "p",
     "aid": "2971",
@@ -24336,7 +24336,7 @@
     "url": "/song/1581/voulez-vous"
   },
   {
-    "s": "Thank You",
+    "s": "Thank U",
     "a": "Alanis Morissette",
     "ss": "t",
     "aa": "a",
@@ -24347,9 +24347,9 @@
     "prv": 1386,
     "did": "0",
     "sorta": "alanis morissette",
-    "sorts": "thank you",
+    "sorts": "thank u",
     "img": "31030",
-    "url": "/song/817/thank-you"
+    "url": "/song/817/thank-u"
   },
   {
     "s": "Fairground",
@@ -24401,7 +24401,7 @@
   },
   {
     "s": "The Second You Sleep",
-    "a": "Saybia",
+    "a": "SAYBIA",
     "ss": "t",
     "aa": "s",
     "aid": "736",
@@ -24417,7 +24417,7 @@
   },
   {
     "s": "Little Talks",
-    "a": "Of Monsters And Men",
+    "a": "Of Monsters and Men",
     "ss": "l",
     "aa": "o",
     "aid": "10351",
@@ -24561,16 +24561,16 @@
   },
   {
     "s": "Jessica",
-    "a": "The Allman Brothers Band",
+    "a": "Allman Brothers Band",
     "ss": "j",
-    "aa": "t",
+    "aa": "a",
     "aid": "8102",
     "yr": 1976,
     "aud": 15739,
     "pos": 1536,
     "prv": 1369,
     "did": "0",
-    "sorta": "the allman brothers band",
+    "sorta": "allman brothers band",
     "sorts": "jessica",
     "img": "74194",
     "url": "/song/8102/jessica"
@@ -24864,7 +24864,7 @@
     "url": "/song/38530/gold-on-the-ceiling"
   },
   {
-    "s": "I Wanna Dance With Somebody (Who Loves Me)",
+    "s": "I Wanna Dance With Somebody",
     "a": "Whitney Houston",
     "ss": "i",
     "aa": "w",
@@ -24875,9 +24875,9 @@
     "prv": 1446,
     "did": "0",
     "sorta": "whitney houston",
-    "sorts": "i wanna dance with somebody who loves me",
+    "sorts": "i wanna dance with somebody",
     "img": "73873",
-    "url": "/song/35548/i-wanna-dance-with-somebody-who-loves-me"
+    "url": "/song/35548/i-wanna-dance-with-somebody"
   },
   {
     "s": "Why Can't This Be Love",
@@ -24913,7 +24913,7 @@
   },
   {
     "s": "Senza Una Donna",
-    "a": "Zucchero Fornaciari ft. Paul Young",
+    "a": "Zucchero Fornaciari",
     "ss": "s",
     "aa": "z",
     "aid": "6072",
@@ -24922,7 +24922,7 @@
     "pos": 1558,
     "prv": 1273,
     "did": "0",
-    "sorta": "zucchero fornaciari ft paul young",
+    "sorta": "zucchero fornaciari",
     "sorts": "senza una donna",
     "img": "85465",
     "url": "/song/6072/senza-una-donna"
@@ -24977,7 +24977,7 @@
   },
   {
     "s": "Into The Great Wide Open",
-    "a": "Tom Petty & The Heartbreakers",
+    "a": "Tom Petty",
     "ss": "i",
     "aa": "t",
     "aid": "37127",
@@ -24986,7 +24986,7 @@
     "pos": 1562,
     "prv": 0,
     "did": "0",
-    "sorta": "tom petty the heartbreakers",
+    "sorta": "tom petty",
     "sorts": "into the great wide open",
     "img": "111135",
     "url": "/song/37127/into-the-great-wide-open"
@@ -25024,7 +25024,7 @@
     "url": "/song/2766/fox-on-the-run"
   },
   {
-    "s": "New Shoes",
+    "s": "New shoes",
     "a": "Paolo Nutini",
     "ss": "n",
     "aa": "p",
@@ -25137,7 +25137,7 @@
   },
   {
     "s": "Mijn Gebed",
-    "a": "DC Lewis",
+    "a": "D.C. Lewis",
     "ss": "m",
     "aa": "d",
     "aid": "7795",
@@ -25146,7 +25146,7 @@
     "pos": 1572,
     "prv": 0,
     "did": "0",
-    "sorta": "dc lewis",
+    "sorta": "d c lewis",
     "sorts": "mijn gebed",
     "img": "69618",
     "url": "/song/7795/mijn-gebed"
@@ -25232,7 +25232,7 @@
     "url": "/song/33530/cry-me-a-river"
   },
   {
-    "s": "Monkey Gone To Heaven",
+    "s": "Monkey Gone To Heaven ",
     "a": "Pixies",
     "ss": "m",
     "aa": "p",
@@ -25296,7 +25296,7 @@
     "url": "/song/41725/reflektor"
   },
   {
-    "s": "There Must Be An Angel",
+    "s": "There Must Be An Angel (Playing With My Heart)",
     "a": "Eurythmics",
     "ss": "t",
     "aa": "e",
@@ -25307,9 +25307,9 @@
     "prv": 1653,
     "did": "0",
     "sorta": "eurythmics",
-    "sorts": "there must be an angel",
+    "sorts": "there must be an angel playing with my heart",
     "img": "74203",
-    "url": "/song/2749/there-must-be-an-angel"
+    "url": "/song/2749/there-must-be-an-angel-playing-with-my-heart"
   },
   {
     "s": "Brilliant Disguise",
@@ -25377,7 +25377,7 @@
   },
   {
     "s": "The Saints Are Coming",
-    "a": "U2 & Green Day",
+    "a": "U2",
     "ss": "t",
     "aa": "u",
     "aid": "32412",
@@ -25386,7 +25386,7 @@
     "pos": 1587,
     "prv": 1481,
     "did": "0",
-    "sorta": "u2 green day",
+    "sorta": "u2",
     "sorts": "the saints are coming",
     "img": "102876",
     "url": "/song/32412/the-saints-are-coming"
@@ -25441,7 +25441,7 @@
   },
   {
     "s": "Still Believe",
-    "a": "Herman Brood & His Wild Romance",
+    "a": "Herman Brood",
     "ss": "s",
     "aa": "h",
     "aid": "38439",
@@ -25450,7 +25450,7 @@
     "pos": 1591,
     "prv": 1402,
     "did": "0",
-    "sorta": "herman brood his wild romance",
+    "sorta": "herman brood",
     "sorts": "still believe",
     "img": "71185",
     "url": "/song/38439/still-believe"
@@ -25585,7 +25585,7 @@
   },
   {
     "s": "Two Tribes",
-    "a": "Frankie Goes To Hollywood",
+    "a": "Frankie goes to Hollywood",
     "ss": "t",
     "aa": "f",
     "aid": "4143",
@@ -25600,7 +25600,7 @@
     "url": "/song/4143/two-tribes"
   },
   {
-    "s": "Diggin",
+    "s": "Diggin'",
     "a": "Kovacs",
     "ss": "d",
     "aa": "k",
@@ -25761,7 +25761,7 @@
   },
   {
     "s": "Bestel Mar",
-    "a": "Rowwen Hèze",
+    "a": "Rowwen Heze",
     "ss": "b",
     "aa": "r",
     "aid": "1607",
@@ -25792,7 +25792,7 @@
     "url": "/song/1110/you-can-t-hurry-love"
   },
   {
-    "s": "Overture",
+    "s": "Ouverture",
     "a": "The Who",
     "ss": "o",
     "aa": "t",
@@ -25803,9 +25803,9 @@
     "prv": 1555,
     "did": "0",
     "sorta": "the who",
-    "sorts": "overture",
+    "sorts": "ouverture",
     "img": "70844",
-    "url": "/song/36055/overture"
+    "url": "/song/36055/ouverture"
   },
   {
     "s": "Georgia On My Mind",
@@ -25968,7 +25968,7 @@
     "url": "/song/33996/don-t-stand-so-close-to-me"
   },
   {
-    "s": "Rappers Delight",
+    "s": "Rapper's Delight",
     "a": "Sugarhill Gang",
     "ss": "r",
     "aa": "s",
@@ -25979,9 +25979,9 @@
     "prv": 1585,
     "did": "0",
     "sorta": "sugarhill gang",
-    "sorts": "rappers delight",
+    "sorts": "rapper s delight",
     "img": "74386",
-    "url": "/song/4388/rappers-delight"
+    "url": "/song/4388/rapper-s-delight"
   },
   {
     "s": "Diamonds And Pearls",
@@ -26032,7 +26032,7 @@
     "url": "/song/45319/parijs"
   },
   {
-    "s": "One Love / People Get Ready",
+    "s": "One Love - People Get Ready",
     "a": "Bob Marley & The Wailers",
     "ss": "o",
     "aa": "b",
@@ -26049,7 +26049,7 @@
   },
   {
     "s": "Swim With Sam",
-    "a": "A Balladeer",
+    "a": "a balladeer",
     "ss": "s",
     "aa": "a",
     "aid": "2023",
@@ -26065,7 +26065,7 @@
   },
   {
     "s": "Meester Prikkebeen",
-    "a": "Boudewijn de Groot",
+    "a": "Boudewijn de Groot En Elly Nieman",
     "ss": "m",
     "aa": "b",
     "aid": "35480",
@@ -26074,7 +26074,7 @@
     "pos": 1630,
     "prv": 1444,
     "did": "0",
-    "sorta": "boudewijn de groot",
+    "sorta": "boudewijn de groot en elly nieman",
     "sorts": "meester prikkebeen",
     "img": "70690",
     "url": "/song/35480/meester-prikkebeen"
@@ -26336,7 +26336,7 @@
     "url": "/song/2761/love-is-all-around"
   },
   {
-    "s": "Rock And Roll",
+    "s": "Rock 'N' Roll",
     "a": "Led Zeppelin",
     "ss": "r",
     "aa": "l",
@@ -26347,9 +26347,9 @@
     "prv": 1565,
     "did": "0",
     "sorta": "led zeppelin",
-    "sorts": "rock and roll",
+    "sorts": "rock n roll",
     "img": "202928",
-    "url": "/song/35546/rock-and-roll"
+    "url": "/song/35546/rock-n-roll"
   },
   {
     "s": "Hero",
@@ -26480,7 +26480,7 @@
     "url": "/song/2022/original-sin"
   },
   {
-    "s": "Unbeschreiblich Weiblich",
+    "s": "Unbeschreiblich Weiblich",
     "a": "Nina Hagen",
     "ss": "u",
     "aa": "n",
@@ -26561,7 +26561,7 @@
   },
   {
     "s": "Living Doll",
-    "a": "Cliff Richard & The Young Ones",
+    "a": "Cliff Richard",
     "ss": "l",
     "aa": "c",
     "aid": "35900",
@@ -26570,7 +26570,7 @@
     "pos": 1661,
     "prv": 1490,
     "did": "0",
-    "sorta": "cliff richard the young ones",
+    "sorta": "cliff richard",
     "sorts": "living doll",
     "img": "72176",
     "url": "/song/35900/living-doll"
@@ -26688,8 +26688,8 @@
     "url": "/song/1524/real-slim-shady"
   },
   {
-    "s": "Monday Monday",
-    "a": "The Mamas & The Papas",
+    "s": "Monday, Monday",
+    "a": "The Mamas And The Papas",
     "ss": "m",
     "aa": "t",
     "aid": "9895",
@@ -26698,7 +26698,7 @@
     "pos": 1669,
     "prv": 1563,
     "did": "0",
-    "sorta": "the mamas the papas",
+    "sorta": "the mamas and the papas",
     "sorts": "monday monday",
     "img": "70041",
     "url": "/song/9895/monday-monday"
@@ -26720,9 +26720,9 @@
     "url": "/song/43466/love-never-felt-so-good"
   },
   {
-    "s": "Slow Song",
+    "s": "A Slow Song",
     "a": "Joe Jackson",
-    "ss": "s",
+    "ss": "a",
     "aa": "j",
     "aid": "34577",
     "yr": 1982,
@@ -26731,12 +26731,12 @@
     "prv": 1965,
     "did": "0",
     "sorta": "joe jackson",
-    "sorts": "slow song",
+    "sorts": "a slow song",
     "img": "",
-    "url": "/song/34577/slow-song"
+    "url": "/song/34577/a-slow-song"
   },
   {
-    "s": "Intro / Sweet Jane",
+    "s": "Intro/Sweet Jane",
     "a": "Lou Reed",
     "ss": "i",
     "aa": "l",
@@ -26778,7 +26778,7 @@
     "pos": 1674,
     "prv": 0,
     "did": "0",
-    "sorta": "boekkers",
+    "sorta": "bokkers",
     "sorts": "iederene hef een reden",
     "img": "245632",
     "url": "/song/50470/iederene-hef-een-reden"
@@ -31514,7 +31514,7 @@
     "pos": 1970,
     "prv": 0,
     "did": "0",
-    "sorta": "bjoerk",
+    "sorta": "bjork",
     "sorts": "human behaviour",
     "img": "150476",
     "url": "/song/38243/human-behaviour"
