@@ -45,11 +45,13 @@ function simplify($text)
 
 function main()
 {
-	$year = '2017';
+	$year = intval(date('Y'));
 
-	$list = json_decode(file_get_contents(sprintf('%d.json', $year)));
+	if (file_exists(sprintf('%d.json', $year)))
+		$list = json_decode(file_get_contents(sprintf('%d.json', $year)));
 
-	$list_prev_year = json_decode(file_get_contents(sprintf('%d.json', $year - 1)));
+	if (file_exists(sprintf('%d.json', $year - 1)))
+		$list_prev_year = json_decode(file_get_contents(sprintf('%d.json', $year - 1)));
 
 	$now_playing_data = file_get_contents('http://radiobox2.omroep.nl/data/radiobox2/nowonair/2.json?npo_cc_skip_wall=1');
 
@@ -66,7 +68,7 @@ function main()
 		'expires' => strtotime($now_playing->stopdatetime)
 	];
 
-	if ($song_in_list = find_song($list, $song))
+	if (!empty($list) && $song_in_list = find_song($list, $song))
 		$song = array_merge($song, $song_in_list);
 	
 	// If the song has already expired for about half a minute, skip on to the next
@@ -74,7 +76,7 @@ function main()
 		$song = get_song($list, $song['index'] - 1);
 
 	// Find the current song in previous year's list
-	if ($song_in_prev_list = find_song($list_prev_year, $song))
+	if (!empty($list_prev_year) && $song_in_prev_list = find_song($list_prev_year, $song))
 		$song['prev_position'] = $song_in_prev_list['position'];
 
 	return $song;
