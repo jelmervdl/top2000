@@ -30,7 +30,7 @@ else if (!preg_match("/'url':'(.+?)(?<!\\\\)(?:\\\\{2})*'/", $api_response, $mat
 else if (($webpage = curl_get_contents($match[1])) === false)
 	$response['error'] = 'Could not fetch lyrics';
 
-else if (preg_match('/((?:&#\d+;|<\\/?i>|<br \\/>){10,})/', $webpage, $match))
+else if (preg_match('/((?:&#\d+;|<\\/?[ib]>|<br \\/>){10,})/', $webpage, $match))
 	$response['lyrics'] = decode_entities($match[1]);
 else if (preg_match('/<div class=\'lyricbox\'>(.+?)<div class=\'lyricsbreak\'>/', $webpage, $match))
 	$response['lyrics'] = decode_entities($match[1]);
