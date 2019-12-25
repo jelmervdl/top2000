@@ -4,6 +4,16 @@ date_default_timezone_set('Europe/Amsterdam');
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 
+function curl_get_contents($url) {
+	$curl = curl_init($url);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+	curl_setopt($curl, CURLOPT_HEADER, 0);
+	$out = curl_exec($curl);
+	curl_close($curl);
+	return $out;
+}
+
 function get_song(array $list, $index)
 {
 	$song = $list[$index];
@@ -53,7 +63,7 @@ function main()
 	if (file_exists(sprintf('%d.json', $year - 1)))
 		$list_prev_year = json_decode(file_get_contents(sprintf('%d.json', $year - 1)));
 
-	$now_playing_data = file_get_contents('http://radiobox2.omroep.nl/data/radiobox2/nowonair/2.json?npo_cc_skip_wall=1');
+	$now_playing_data = curl_get_contents('http://radiobox2.omroep.nl/data/radiobox2/nowonair/2.json?npo_cc_skip_wall=1');
 
 	$now_playing = json_decode($now_playing_data)->results[0];
 
