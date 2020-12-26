@@ -1,4 +1,6 @@
 <?php
+require 'config.php';
+
 date_default_timezone_set('Europe/Amsterdam');
 
 ini_set('display_errors', true);
@@ -18,24 +20,29 @@ function decode_entities($text) {
 	return preg_replace_callback("/(&#[0-9]+;)/", function($m) { return mb_convert_encoding($m[1], "UTF-8", "HTML-ENTITIES"); }, $text);
 }
 
-$api_response = curl_get_contents('http://lyrics.wikia.com/api.php?fmt=json&action=lyrics&artist='.rawurlencode($_GET['artist']).'&song='.rawurlencode($_GET['song']));
+function main() {
+	$track_search = json_decode(curl_get_contents(sprintf('https://api.happi.dev/v1/music?limit=1&apikey=%s&type=track&q=%s+%s',
+		rawurlencode(HAPPI_API_KEY),
+		rawurlencode($_GET['artist']),
+		rawurlencode($_GET['song']))));
 
+	if (!$track_search->success)
+		return ['error' => 'Could not search for track info'];
 
-if (preg_match("/'lyrics':'Not found'/", $api_response))
-	$response['error'] = 'Not found';
+	if ($track_search->length < 1)
+		return ['error' => 'Could not find track in database'];
 
-else if (!preg_match("/'url':'(.+?)(?<!\\\\)(?:\\\\{2})*'/", $api_response, $match))
-	$response['error'] = 'Could not find url';
+	$lyrics_search = json_decode(curl_get_contents(sprintf('https://api.happi.dev/v1/music/artists/%d/albums/%d/tracks/%d/lyrics?apikey=%s',
+		$track_search->result[0]->id_artist,
+		$track_search->result[0]->id_album,
+		$track_search->result[0]->id_track,
+		rawurlencode(HAPPI_API_KEY))));
 
-else if (($webpage = curl_get_contents($match[1])) === false)
-	$response['error'] = 'Could not fetch lyrics';
+	if (!$lyrics_search->success)
+		return ['error' => 'Could not fetch lyrics'];
 
-else if (preg_match('/((?:&#\d+;|<\\/?[ib]>|<br \\/>){10,})/', $webpage, $match))
-	$response['lyrics'] = decode_entities($match[1]);
-else if (preg_match('/<div class=\'lyricbox\'>(.+?)<div class=\'lyricsbreak\'>/', $webpage, $match))
-	$response['lyrics'] = decode_entities($match[1]);
-else
-	$response['error'] = 'Could not find lyrics';
+	return ['lyrics' => nl2br($lyrics_search->result->lyrics)];
+}
 
 header('Content-Type: application/json');
-echo json_encode($response);
+echo json_encode(main());

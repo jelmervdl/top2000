@@ -1,0 +1,4 @@
+<?php
+
+// Get from here: https://happi.dev
+const HAPPI_API_KEY = '[API KEY HERE]';
