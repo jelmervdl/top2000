@@ -42,7 +42,7 @@ function find_song(array $list, array $now_playing)
 		$simplified_title = simplify($now_playing['title']);
 
 		foreach ($list as $i => $song)
-			if (simplify($song->s) == $simplified_title && simplify($song->a) == $simplified_artist)
+			if (simplify($song->s ?? $song->title) == $simplified_title && simplify($song->a ?? $song->artist) == $simplified_artist)
 				return get_song($list, $i);
 	}
 	
