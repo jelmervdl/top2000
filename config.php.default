@@ -1,4 +1,4 @@
 <?php
 
-// Get from here: https://happi.dev
-const HAPPI_API_KEY = '[API KEY HERE]';
+// Get from here: https://genius.com/api-clients
+const GENIUS_ACCESS_TOKEN = '[ACCESS TOKEN HERE]';
