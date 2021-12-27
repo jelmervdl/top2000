@@ -20,28 +20,31 @@ function get_song(array $list, $index)
 	
 	return [
 		'index' => $index,
-		'title' => $song->s,
-		'artist' => $song->a,
-		'position' => $song->pos,
-		'image' => $song->img,
+		'title' => $song->s ?? $song->title,
+		'artist' => $song->a ?? $song->artist,
+		'position' => $song->pos ?? $song->position,
+		'image' => $song->img ?? $song->imageUrl,
 	];
 }
 
 function find_song(array $list, array $now_playing)
 {
 	// If it is already linked by songfile, use that information
-	if (!empty($now_playing['aid']))
+	if (!empty($now_playing['id'])) {
 		foreach ($list as $i => $song)
-			if ($song->aid == $now_playing['aid'])
+			if (isset($song->id) && $song->id == $now_playing['id'])
 				return get_song($list, $i);
+	}
 
-	// But sometimes Radio2 messed up, and we are just going try to match it on artist and title
-	$simplified_artist = simplify($now_playing['artist']);
-	$simplified_title = simplify($now_playing['title']);
+	if (isset($now_playing['artist'], $now_playing['title'])) {
+		// But sometimes Radio2 messed up, and we are just going try to match it on artist and title
+		$simplified_artist = simplify($now_playing['artist']);
+		$simplified_title = simplify($now_playing['title']);
 
-	foreach ($list as $i => $song)
-		if (simplify($song->s) == $simplified_title && simplify($song->a) == $simplified_artist)
-			return get_song($list, $i);
+		foreach ($list as $i => $song)
+			if (simplify($song->s) == $simplified_title && simplify($song->a) == $simplified_artist)
+				return get_song($list, $i);
+	}
 	
 	return null;
 }
@@ -63,14 +66,15 @@ function main()
 	if (file_exists(sprintf('%d.json', $year - 1)))
 		$list_prev_year = json_decode(file_get_contents(sprintf('%d.json', $year - 1)));
 
-	$now_playing_data = curl_get_contents('https://www.nporadio2.nl/?option=com_ajax&plugin=nowplaying&format=json&channel=nporadio2');
+	$now_playing_data = curl_get_contents('https://www.nporadio2.nl/api/miniplayer/info?channel=npo-radio-2');
 
-	$now_playing = json_decode($now_playing_data)->data[0];
+	$now_playing = json_decode($now_playing_data)->data->radio_track_plays->data[0];
 
 	$song = [
-		'aid' => $now_playing->id,
-		'artist' => $now_playing->artist,
-		'title' => $now_playing->title
+		'id' => $now_playing->radio_tracks->id,
+		'title' => $now_playing->radio_tracks->name,
+		'artist' => $now_playing->radio_tracks->artist,
+		'image' => $now_playing->radio_tracks->cover_url
 	];
 
 	if (!empty($list) && $song_in_list = find_song($list, $song))
