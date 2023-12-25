@@ -84,9 +84,9 @@ function get_lyrics($artist, $song) {
 	$lyrics = scrape_lyrics($song->result->url);
 
 	if (!$lyrics)
-		return ['error' => 'Could not scrape lyrics'];
+		return ['song' => $song, 'error' => 'Could not scrape lyrics'];
 
-	return ['lyrics' => $lyrics];
+	return ['song' => $song, 'lyrics' => $lyrics];
 }
 
 function get_lyrics_cached($artist, $song) {
