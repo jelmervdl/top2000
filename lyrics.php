@@ -68,10 +68,10 @@ function scrape_lyrics($url) {
 	return $text;
 }
 
-function main() {
+function get_lyrics($artist, $song) {
 	$track_search = json_decode(curl_get_contents(sprintf('https://api.genius.com/search?q=%s+%s',
-		rawurlencode($_GET['artist']),
-		rawurlencode($_GET['song']))));
+		rawurlencode($artist),
+		rawurlencode($song))));
 
 	if ($track_search->meta->status != 200)
 		return ['error' => 'Could not search for track info'];
@@ -86,7 +86,26 @@ function main() {
 	if (!$lyrics)
 		return ['error' => 'Could not scrape lyrics'];
 
-	return ['lyrics' => nl2br($lyrics)];
+	return ['lyrics' => $lyrics];
+}
+
+function get_lyrics_cached($artist, $song) {
+	$cache_key = md5(sprintf('%s#%s', $artist, $song))
+
+	$cache_file = sprintf('cache/%s.json', $cache_key);
+
+	if (file_exists($cache_file))
+		return json_decode(file_get_contents($cache_file));
+
+	$lyrics = get_lyrics($artist, $song);
+
+	file_put_contents($cache_file, json_encode($lyrics));
+
+	return $lyrics;
+}
+
+function main() {
+	return get_lyrics_cached($_GET['artist'], $_GET['song']);
 }
 
 header('Content-Type: text/plain; charset=utf-8');
