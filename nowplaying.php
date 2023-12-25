@@ -16,13 +16,14 @@ function curl_get_contents($url) {
 
 function cast_song($song)
 {
-	if (isset($song->track)) { // 2022
+	if (isset($song->track)) { // 2022, 2023
 		return [
 			'title' => $song->track->title,
 			'artist' => $song->track->artist,
 			'image' => $song->track->coverUrl,
 			'position' => $song->position->current,
 			'prev_position' => $song->position->previous,
+			'year' => $song->track->year ?? null,
 		];
 	} else { // 2021 and older
 		return [

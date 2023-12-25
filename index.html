@@ -76,6 +76,18 @@
 			opacity: 1.0;
 		}
 
+		#now-playing .year::before {
+			content: '(';
+		}
+
+		#now-playing .year::after {
+			content: ')';
+		}
+
+		#now-playing .year:empty {
+			display: none;
+		}
+
 		#now-playing .position-change.down::before {
 			font-size: 0.8em;
 			content: '⇩';
@@ -194,7 +206,10 @@
 				</span>
 				<img class="cover">
 				<span class="artist"></span>
-				<span class="song"></span>
+				<span class="song">
+					<span class="title"></span>
+					<span class="year"></span>
+				</span>
 			</div>
 
 			<span id="last-update"></span>
@@ -243,7 +258,8 @@
 				$('#now-playing .position-current', '#' + (song.position || '???'));
 				$('#now-playing .cover').src = song.image || 'generic-cd.png';
 				$('#now-playing .artist', song.artist);
-				$('#now-playing .song', song.title);
+				$('#now-playing .title', song.title);
+				$('#now-playing .year', song.year || '');
 				document.querySelector('#background').style.backgroundImage = 'url(' + song.image + ')';
 
 				var el = $('#now-playing .position-change');
