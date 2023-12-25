@@ -90,7 +90,7 @@ function get_lyrics($artist, $song) {
 }
 
 function get_lyrics_cached($artist, $song) {
-	$cache_key = md5(sprintf('%s#%s', $artist, $song))
+	$cache_key = md5(sprintf('%s#%s', $artist, $song));
 
 	$cache_file = sprintf('cache/%s.json', $cache_key);
 
