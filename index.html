@@ -99,6 +99,12 @@
 			overflow: auto;
 			top: 100%;
 			min-height: 100%;
+			white-space: pre;
+		}
+
+		#lyrics:empty::before {
+			content: 'Geen songtekst beschikbaar';
+			font-style: italic;
 		}
 
 		@media only screen and (max-width: 900px) {
@@ -271,7 +277,7 @@
 
 			function showLyrics(lyrics)
 			{
-				$('#lyrics').innerHTML = lyrics.lyrics || '<em>Geen songtekst beschikbaar</em>';
+				$('#lyrics', lyrics.lyrics || '');
 			}
 
 			function isCurrentSong(song)
