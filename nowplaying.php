@@ -64,6 +64,51 @@ function simplify($text)
 	return $text;
 }
 
+function clean_title($text)
+{
+	// Remove anything between "(..)" at the start or end of the title
+	$text = preg_replace('/^\(.+?\)\s*|\s*\(.+?\)$/', '', $text);
+	return $text;
+}
+
+function get_now_playing_live()
+{
+	$now_playing_data = curl_get_contents('https://www.nporadio2.nl/api/miniplayer/info?channel=npo-radio-2');
+
+	$now_playing = json_decode($now_playing_data)->data->radioTrackPlays->data[0];
+
+	return [
+		'id' => $now_playing->radioTracks->id,
+		'title' => $now_playing->radioTracks->name,
+		'artist' => $now_playing->radioTracks->artist,
+		'image' => $now_playing->radioTracks->coverUrl,
+		'position' => intval($now_playing->cmsChartEditionPositions->position),
+		'prev_position' => intval($now_playing->cmsChartEditionPositions->lastPosition)
+	];
+}
+
+function get_song_by_position($list, $position)
+{
+	// Positions count till 1, so index 0 is position 1.
+	$index = intval($position) - 1;
+
+	// Assume our list is sorted
+	if (isset($list[$index]) && $list[$index]['position'] === $position)
+		return $list[$index];
+
+	// If not, fall back to searching
+	foreach ($list as $song)
+		if ($song['position'] === $position)
+			return $song;
+}
+
+function error_404($message)
+{
+	header('Status: 404 Not Found');
+	echo "Could not find song";
+	exit();
+}
+
 function main()
 {
 	$year = intval(date('Y'));
@@ -74,19 +119,14 @@ function main()
 	if (file_exists(sprintf('%d.json', $year - 1)))
 		$list_prev_year = array_map('cast_song', json_decode(file_get_contents(sprintf('%d.json', $year - 1))));
 
-	$now_playing_data = curl_get_contents('https://www.nporadio2.nl/api/miniplayer/info?channel=npo-radio-2');
+	if (isset($_GET['position']))
+		$song = get_song_by_position($list, intval($_GET['position']));
+	else
+		$song = get_now_playing_live();
 
-	$now_playing = json_decode($now_playing_data)->data->radioTrackPlays->data[0];
-
-	$song = [
-		'id' => $now_playing->radioTracks->id,
-		'title' => $now_playing->radioTracks->name,
-		'artist' => $now_playing->radioTracks->artist,
-		'image' => $now_playing->radioTracks->coverUrl,
-		'position' => intval($now_playing->cmsChartEditionPositions->position),
-		'prev_position' => intval($now_playing->cmsChartEditionPositions->lastPosition)
-	];
-
+	if (!$song)
+		error_404('Could not find song');
+	
 	if (!empty($list) && $song_in_list = find_song($list, $song))
 		$song = array_merge($song, $song_in_list);
 	
@@ -94,8 +134,15 @@ function main()
 	if (!empty($list_prev_year) && $song_in_prev_list = find_song($list_prev_year, $song))
 		$song['prev_position'] = $song_in_prev_list['position'];
 
+	// Remove shit like "(Albumversie)"
+	$song['title'] = clean_title($song['title']);
+
 	return $song;
 }
 
+// Note: running `main()` before sending the header because main() can error 
+// out with a non-json response.
+$response = main();
+
 header('Content-Type: application/json');
-echo json_encode(main());
+echo json_encode($response);
