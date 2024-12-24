@@ -83,8 +83,12 @@ function get_now_playing_live()
 		'title' => $now_playing->radioTracks->name,
 		'artist' => $now_playing->radioTracks->artist,
 		'image' => $now_playing->radioTracks->coverUrl,
-		'position' => intval($now_playing->cmsChartEditionPositions->position),
-		'prev_position' => intval($now_playing->cmsChartEditionPositions->lastPosition)
+		'position' => $now_playing->cmsChartEditionPositions
+		  ? intval($now_playing->cmsChartEditionPositions->position)
+		  : null,
+		'prev_position' => $now_playing->cmsChartEditionPositions
+		  ? intval($now_playing->cmsChartEditionPositions->lastPosition)
+		  : null,
 	];
 }
 
