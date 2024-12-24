@@ -9,6 +9,7 @@ function curl_get_contents($url) {
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($curl, CURLOPT_HEADER, 0);
+	curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Safari/605.1.15");
 	$out = curl_exec($curl);
 	curl_close($curl);
 	return $out;
@@ -53,7 +54,7 @@ function find_song(array $list, array $now_playing)
 			if (simplify($song['title']) == $simplified_title && simplify($song['artist']) == $simplified_artist)
 				return $song;
 	}
-	
+
 	return null;
 }
 
@@ -126,10 +127,10 @@ function main()
 
 	if (!$song)
 		error_404('Could not find song');
-	
+
 	if (!empty($list) && $song_in_list = find_song($list, $song))
 		$song = array_merge($song, $song_in_list);
-	
+
 	// Find the current song in previous year's list
 	if (!empty($list_prev_year) && $song_in_prev_list = find_song($list_prev_year, $song))
 		$song['prev_position'] = $song_in_prev_list['position'];
@@ -140,7 +141,7 @@ function main()
 	return $song;
 }
 
-// Note: running `main()` before sending the header because main() can error 
+// Note: running `main()` before sending the header because main() can error
 // out with a non-json response.
 $response = main();
 
