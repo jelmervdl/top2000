@@ -105,7 +105,7 @@ function get_lyrics_cached($artist, $song) {
 }
 
 function main() {
-    if ($_SERVER['argc'] > 1)
+    if (!empty($_SERVER['argc']) && $_SERVER['argc'] > 1)
         parse_str(implode('&', array_slice($_SERVER['argv'], 1)), $_GET);
 
     if (!isset($_GET["cache"]) || $_GET["cache"])
