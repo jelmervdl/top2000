@@ -131,7 +131,7 @@
 			font: 15vw/17.5vw sans-serif;
 			word-break: break-all;
 		}
-		
+
 		#now-playing .cover {
 			width: 1em;
 			height: 1em;
@@ -237,7 +237,7 @@
 				};
 				request.send();
 			}
-			
+
 			function getCurrentSongInfo(callback)
 			{
 				request('nowplaying.php?t=' + new Date().getTime(), callback);
@@ -254,7 +254,7 @@
 
 				if (element && text !== undefined)
 					element.textContent = text;
-				
+
 				return element;
 			}
 
@@ -269,7 +269,8 @@
 
 				var el = $('#now-playing .position-change');
 
-				if ('position' in song && 'prev_position' in song) {
+				// falsy positions (i.e. 0) should be treated as missing data
+				if (song.position && song.prev_position) {
 					var direction = song.position - song.prev_position > 0 ? 'down' : 'up';
 					el.textContent = Math.abs(song.position - song.prev_position);
 					el.className = 'position-change ' + direction;
@@ -343,9 +344,9 @@
 
 					// Schedule next update (with a minimum pause of 10 seconds)
 					var diff = (song && 'expires' in song) ? song.expires - new Date().getTime() / 1000 : 0;
-					
+
 					console.info('Refresh in', diff, 'seconds');
-					
+
 					clearInterval(interval);
 					interval = setTimeout(update, Math.min(Math.max(diff, 10), 60 * 4.5) * 1000);
 				});
