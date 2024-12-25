@@ -61,7 +61,7 @@ function scrape_lyrics($url) {
 	$text = '';
 
 	foreach ($dom->getElementsByTagName('div') as $div) {
-		if (strstr($div->getAttribute('class'), 'Lyrics__Container') !== false)
+		if (strstr($div->getAttribute('data-lyrics-container'), 'true') !== false)
 			$text .= scrape_text($div) . "\n";
 	}
 
@@ -105,7 +105,15 @@ function get_lyrics_cached($artist, $song) {
 }
 
 function main() {
-	return get_lyrics_cached($_GET['artist'], $_GET['song']);
+    if ($_SERVER['argc'] > 1)
+        parse_str(implode('&', array_slice($_SERVER['argv'], 1)), $_GET);
+
+    if (!isset($_GET["cache"]) || $_GET["cache"])
+        $impl = 'get_lyrics_cached';
+    else
+        $impl = 'get_lyrics';
+
+	return $impl($_GET['artist'], $_GET['song']);
 }
 
 header('Content-Type: text/plain; charset=utf-8');
