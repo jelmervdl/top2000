@@ -302,11 +302,21 @@
 				$('#lyrics', lyrics.lyrics || '');
 			}
 
-			function isCurrentSong(song)
+			function isNewerSong(song)
 			{
-				return currentSong && song
-					&& currentSong.artist == song.artist
-					&& currentSong.title == song.title;
+				if (!song)
+					return false;
+
+				if (!currentSong)
+					return true;
+
+				if (currentSong.position && song.position)
+					return currentSong.position > song.position;
+
+				return (
+					currentSong.artist != song.artist
+					|| currentSong.title != song.title
+				);
 			}
 
 			function preload(src, callback)
@@ -321,7 +331,7 @@
 			{
 				getCurrentSongInfo(function(song) {
 					// Update display
-					if (!isCurrentSong(song))
+					if (isNewerSong(song))
 					{
 						document.body.className = 'loading';
 
