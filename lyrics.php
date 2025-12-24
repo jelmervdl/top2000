@@ -35,6 +35,11 @@ function first($items, $test) {
 function scrape_text($root) {
 	$text = '';
 
+	// Is this node excluded from the normal lyrics (e.g. metadata)
+	if ($root->nodeType == XML_ELEMENT_NODE && strstr($root->getAttribute('data-exclude-from-selection'), 'true') !== false)
+		return '';
+
+	// Convert linebreaks into actual line breaks
 	if ($root->nodeType == XML_ELEMENT_NODE && $root->nodeName == 'br')
 		$text .= "\n";
 
